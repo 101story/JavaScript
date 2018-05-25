@@ -1,0 +1,57 @@
+<html>
+<body>
+    var grades = {'egoing': 10, 'k8805': 6, 'sorialgi': 80};
+    <ul>
+        <li>
+            <script>
+                var grades = {
+                    'egoing': 10,
+                    'k8805': 6,
+                    'sorialgi': 80
+                };
+                document.write(grades);
+            </script>
+        </li>
+        <li>grades['egoing']
+            <script>
+                document.write(grades['egoing'])
+            </script>
+        </li>
+        <li>grades[key] <br>
+            <script>
+                var grades = {
+                    'egoing': 10,
+                    'k8805': 6,
+                    'sorialgi': 80
+                };
+                for (key in grades) {
+                    document.write("key : " + key + " / value : " + grades[key] + "</br>")
+                }
+            </script>
+        </li>
+        <li>object in object
+            <script>
+                var grades = {
+                    'list': {
+                        'egoing': 10,
+                        'k8805': 6,
+                        'sorialgi': 80
+                    },
+                    'show': function() {
+                        for (var name in this.list) {
+                            document.write(name + ':' + this.list[name] + "<br />");
+                        }
+                    }
+                };
+                document.write(grades.show());
+            </script>
+        </li>
+        <li>
+            <script>
+                document.write()
+            </script>
+        </li>
+    </ul>
+</body>
+
+</html>

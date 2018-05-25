@@ -1,0 +1,64 @@
+<html>
+<body>
+정규표현식<br>
+https://opentutorials.org/course/909/5142<br>
+<br>
+Regular Expressions Tutorial<br>
+http://zvon.org/comp/r/tut-Regexp.html#Pages~Contents<br>
+<br>
+interactive exercises.<br>
+https://regexone.com/<br>
+<script>
+    var pattern1 = /a/
+    var pattern2 = new RegExp('a');
+    document.write("exec "+pattern1.exec('abcdef')+"</br>"); // ["a"]
+    document.write(pattern2.exec('abcdef')+"</br>"); // ["a"]
+    document.write("test "+pattern1.test('abcdef')+"</br>");
+</script>
+<br>
+String.match()
+<script>document.write('abcdef'.match(pattern))</script>
+<br>
+String.replace()
+<script>document.write('abcdef'.replace(pattern1, 'A'))</script>
+
+<br>
+i : i를 붙이면 대소문자를 구분하지 않는다. </br>
+<script>
+var xi = /a/;
+document.write("Abcde".match(xi)); // null
+var oi = /a/i;
+document.write("Abcde".match(oi)); // ["A"];
+</script>
+
+<br>
+g : g를 붙이면 검색된 모든 결과를 리턴한다.<br>
+<script>
+var xg = /a/;
+document.write("abcdea".match(xg));
+var og = /a/g;
+document.write("abcdea".match(og));
+</script>
+
+정규표현식 시각화 <br>
+https://regexper.com/
+<br>그룹 변경하기 <br>
+<script>
+var pattern = /(\w+)\s(\w+)/;
+var str = "coding everybody";
+var result = str.replace(pattern, "$2, $1");
+document.write(result);
+</script>
+
+<br>
+URL을 링크 html 태그로 교체 <br>
+<script>
+var urlPattern = /\b(?:https?):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*/gim;
+var content = '생활코딩 : http://opentutorials.org/course/1 입니다. 네이버 : http://naver.com 입니다. ';
+var result = content.replace(urlPattern, function(url){
+    return '<a href="'+url+'">'+url+'</a>';
+});
+document.write(result);
+</script>
+</body>
+</html>
