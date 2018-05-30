@@ -1,0 +1,173 @@
+<html>
+
+<body>
+    <p>생성자와 new</p>
+    prototype-based programming <br>
+    <script>
+        // var person = {} // 객체 생성
+        // // property
+        // person.name = 'egoing';
+        // // method
+        // person.introduce = function(){
+        //     return 'My name is '+this.name;
+        // }
+        // document.write(person.introduce());
+        var person1 = {
+            'name': 'egoing',
+            'introduce': function() {
+                return 'My name is ' + this.name;
+            }
+        }
+        document.write(person1.introduce());
+
+        // 생성자 이용
+        // 객체 선언
+        function Person() {}
+        // new 를 이용한 생성자 : 생선자가 선언에 같이 있지 않는다.
+        var p = new Person();
+
+        p.name = 'egoing';
+        p.introduce = function() {
+            return 'My name is ' + this.name;
+        }
+        document.write(p.introduce());
+
+        // property, method
+        function Person2(name) {
+            this.name = name;
+            this.introduce = function() {
+                return 'My name is ' + this.name;
+            }
+        }
+
+        var p1 = new Person2('egoing');
+        document.write(p1.introduce() + "<br />");
+
+        var p2 = new Person2('leezche');
+        document.write(p2.introduce());
+    </script>
+
+    <p>전역객체(Global object)</p>
+    모든 전역변수와 함수는 사실 window 객체의 프로퍼티다. 객체를 명시하지 않으면 암시적으로 window의 프로퍼티로 간주된다. <br> 전역객체의 이름도 호스트환경에 따라서 다른데, 웹브라우저에서 전역객체는 window이지만 node.js에서는 global이다.<br>
+    <script>
+        var o = {
+            'func': function() {
+                document.write('Hello?');
+            }
+        }
+        o.func();
+        window.o.func();
+    </script>
+
+    <p>this</p>
+    this는 함수 내에서 함수 호출 맥락(context)를 의미한다. <br> 맥락이라는 것은 상황에 따라서 달라진다는 의미인데 즉 함수를 어떻게 호출하느냐에 따라서 this가 가리키는 대상이 달라진다는 뜻이다. 함수와 객체의 관계가 느슨한 자바스크립트에서 this는 이 둘을 연결시켜주는 실질적인 연결점의 역할을 한다. <br>
+
+    <script>
+        function func() {
+            if (window === this) {
+                document.write("window === this");
+            }
+        }
+        func();
+
+        var o = {
+            func: function() {
+                if (o === this) {
+                    document.write("o === this");
+                }
+            }
+        }
+        o.func();
+
+        var funcThis = null;
+
+        function Func() {
+            funcThis = this;
+        }
+        var o1 = Func();
+        if (funcThis === window) {
+            document.write('window <br />');
+        }
+
+        // new 키워드 사용
+        var o2 = new Func();
+        if (funcThis === o2) {
+            document.write('create new o2 <br />');
+        }
+
+        // 함수 리터럴 literal : 한줄로 생성
+        function sum(x, y) {
+            return x + y
+        };
+        // 객체 리터럴
+        var a = {}
+        // 배열 리터럴
+        var a = [1, 2, 3]
+
+        // apply call
+        var o = {}
+        var p = {}
+
+        function func() {
+            switch (this) {
+                case o:
+                    document.write('o<br />');
+                    break;
+                case p:
+                    document.write('p<br />');
+                    break;
+                case window:
+                    document.write('window<br />');
+                    break;
+            }
+        }
+        func();
+        func.apply(o);
+        func.apply(p);
+    </script>
+
+    <p>상속</p>
+    <script>
+        function Person(name) {
+            this.name = name;
+        }
+        Person.prototype.name = null;
+        Person.prototype.introduce = function() {
+            return 'My name is ' + this.name;
+        }
+
+        function Programmer(name) {
+            this.name = name;
+        }
+        //상속
+        Programmer.prototype = new Person();
+        Programmer.prototype.coding = function() {
+            return "hello world";
+        }
+
+        var p1 = new Programmer('egoing');
+        document.write(p1.introduce() + "<br />");
+        document.write(p1.coding() + "<br />");
+    </script>
+
+    <p>prototype</p>
+    prototype chain<br>
+    <script>
+        function Ultra() {}
+        Ultra.prototype.ultraProp = true;
+
+        function Super() {}
+        Super.prototype = new Ultra();
+
+        function Sub() {}
+        Sub.prototype = new Super();
+
+        var o = new Sub();
+        document.write(o.ultraProp);
+    </script>
+
+    <p></p>
+    <script></script>
+</body>
+
+</html>
