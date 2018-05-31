@@ -166,8 +166,84 @@
         document.write(o.ultraProp);
     </script>
 
-    <p></p>
+    <p>표준 내장 객체(Standard Built-in Object)</p>
+    <ul>
+        <li>Object</li>
+        <li>Function</li>
+        <li>Array</li>
+        <li>Boolean</li>
+        <li>String</li>
+        <li>Number</li>
+        <li>Math</li>
+        <li>Date</li>
+        <li>RegExp</li>
+    </ul>
+    <script>
+        Array.prototype.rand = function() {
+            var index = Math.floor(this.length * Math.random());
+            return this[index];
+        }
+        var arr = new Array('seoul', 'new york', 'ladarkh', 'pusan', 'Tsukuba');
+        document.write("표준내장객체에 메소드 추가 " + arr.rand());
+    </script>
+
+
+    <p>Object</p>
+    https://developer.mozilla.org/ko/docs/Web/JavaScript <br>
+    <script>
+        Object.prototype.contain = function(neddle) {
+            for (var name in this) {
+                if (this[name] === neddle) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        document.write("object 객체에 속성으로 사용자정의함수 사용하기")
+        var o = {
+            'name': 'egoing',
+            'city': 'seoul'
+        }
+        document.write("{'name':'egoing', 'city':'seoul'} egoing 이 있나? " + o.contain('egoing'));
+        var a = ['egoing', 'leezche', 'grapittie'];
+        document.write("['egoing','leezche','grapittie'] 에 leez 가 있나? " + a.contain('leez'));
+
+        document.write('hasOwnProperty 사용 : 사용자정의 제외');
+        for (var name in o) {
+            if (o.hasOwnProperty(name))
+                document.write(name);
+        }
+    </script>
+
+    <p>데이터 타입</p>
+    원시 데이터 타입(primitive type)<br>
+    객체 데이터 타입<br>
+    object access operator : str.lenght 에 . 을 말함 <br>
+    <script>
+    var str = 'coding';
+    document.write(str.length);        // 6
+    document.write(str.charAt(0));     // "C"
+    document.write("str = new String('coding') 과 같은 작업이 일어난다. ");
+
+    var str = 'coding';
+    str.prop = 'everybody';
+    document.write(str.prop);      // undefined
+    document.write("str.prop 를 실행했을 때에는 이미 String 래퍼객체가 제거된 다음이라 존재하지 않는다.")
+    </script>
+    레퍼객체로(wrapper object)는 String, Number, Boolean이 있다. null과 undefined는 레퍼 객체가 존재하지 않는다.<br>
+
+    <p>복제와 참조</p>
+    <script>
+
+        
+    </script>
+
+
+    <p>복제</p>
     <script></script>
+    <p>복제</p>
+    <script></script>
+
 </body>
 
 </html>
