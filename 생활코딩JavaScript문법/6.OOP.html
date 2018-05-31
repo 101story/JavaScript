@@ -216,34 +216,59 @@
     </script>
 
     <p>데이터 타입</p>
-    원시 데이터 타입(primitive type)<br>
-    객체 데이터 타입<br>
-    object access operator : str.lenght 에 . 을 말함 <br>
+    원시 데이터 타입(primitive type)<br> 객체 데이터 타입<br> object access operator : str.lenght 에 . 을 말함 <br>
     <script>
-    var str = 'coding';
-    document.write(str.length);        // 6
-    document.write(str.charAt(0));     // "C"
-    document.write("str = new String('coding') 과 같은 작업이 일어난다. ");
+        var str = 'coding';
+        document.write(str.length); // 6
+        document.write(str.charAt(0)); // "C"
+        document.write("str = new String('coding') 과 같은 작업이 일어난다. ");
 
-    var str = 'coding';
-    str.prop = 'everybody';
-    document.write(str.prop);      // undefined
-    document.write("str.prop 를 실행했을 때에는 이미 String 래퍼객체가 제거된 다음이라 존재하지 않는다.")
+        var str = 'coding';
+        str.prop = 'everybody';
+        document.write(str.prop); // undefined
+        document.write("str.prop 를 실행했을 때에는 이미 String 래퍼객체가 제거된 다음이라 존재하지 않는다.")
     </script>
     레퍼객체로(wrapper object)는 String, Number, Boolean이 있다. null과 undefined는 레퍼 객체가 존재하지 않는다.<br>
 
     <p>복제와 참조</p>
     <script>
+        var a = 1;
+        var b = a;
+        b = 2;
+        document.write("원시데이터 타입 복제 " + a); // 1
 
-        
+        var a = {
+            'id': 1
+        };
+        var b = a;
+        b.id = 2;
+        document.write("객체데이터 타입 참조 " + a.id); // 2
+    </script>
+    함수안에서의 동작 <br>
+    <script>
+        var a = {
+            'id': 1
+        };
+
+        function func(b) {
+            b = {
+                'id': 2
+            };
+        }
+        func(a);
+        document.write("원시데이터 타입 복제 " + a.id);
+
+        var a = {
+            'id': 1
+        };
+
+        function func(b) {
+            b.id = 2;
+        }
+        func(a);
+
+        document.write("객체데이터 타입 참조 " + a.id);
     </script>
 
-
-    <p>복제</p>
-    <script></script>
-    <p>복제</p>
-    <script></script>
-
 </body>
-
 </html>
